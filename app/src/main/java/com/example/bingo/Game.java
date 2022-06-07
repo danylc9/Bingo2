@@ -12,6 +12,7 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 //si españa fuera un donut...
+//madrid no existiria
 
 public class Game {
     int numCardboard;
