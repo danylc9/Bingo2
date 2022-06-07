@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                goToLogin();
                 //handleLogin();
             }
         });
@@ -56,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
         btn_log=findViewById(R.id.btn_log);
         textViewRegistrar=findViewById(R.id.textViewRegistrar);
 
+    }
+    private void goToLogin(){
+        Intent intentOnLogin = new Intent (this, Lobby.class);
+        startActivity(intentOnLogin);
     }
 
   private void goToRegister(){
@@ -91,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
 
     @Override
     public void handleLogin() {
+
+
         if (!isValidEmail()){
             Toast.makeText(this,"No es un email valido",Toast.LENGTH_SHORT).show();
         }
@@ -126,7 +133,10 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
 
     @Override
     public void onLogin() {
-        Toast.makeText(this,"Has hecho login bene",Toast.LENGTH_SHORT).show();
+
+        goToLogin();
+
+        Toast.makeText(this,"Login correcto!",Toast.LENGTH_SHORT).show();
 
     }
 

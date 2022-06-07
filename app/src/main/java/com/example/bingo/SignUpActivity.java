@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bingo.SignUp.SignUpInterface;
@@ -20,11 +21,12 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpInterface.View {
-    private EditText id_ConfirmPassword,id_passwordSignUp,id_mailSignUp,id_User;
+    private EditText id_ConfirmPassword, id_passwordSignUp, id_mailSignUp, id_User;
     private Button btn_signUp;
+    private Button butComprovar;
     private AlertDialog dialogs;
     private SignUpInterface.Presenter presenter;
-    private String contraseña,confirmarContraseña;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +37,18 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
     }
 
     private void setView() {
-        presenter=new SignUpPresenter(this);
-        id_User=findViewById(R.id.id_User);
-        id_ConfirmPassword=findViewById(R.id.id_ConfirmPassword);
-        id_passwordSignUp=findViewById(R.id.id_passwordSignUp);
-        id_mailSignUp=findViewById(R.id.id_mailSignUp);
-        btn_signUp=findViewById(R.id.btn_signUp);
+        presenter = new SignUpPresenter(this);
+        id_User = findViewById(R.id.id_User);
+        id_ConfirmPassword = findViewById(R.id.id_ConfirmPassword);
+        id_passwordSignUp = findViewById(R.id.id_passwordSignUp);
+        id_mailSignUp = findViewById(R.id.id_mailSignUp);
+        btn_signUp = findViewById(R.id.btn_signUp);
 
-        confirmarContraseña=id_ConfirmPassword.getText().toString();
-                contraseña=id_passwordSignUp.getText().toString();
 
-        
+
+
+
+
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,10 +56,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
             }
         });
 
-
-
     }
-
 
 
     @Override
@@ -89,9 +89,9 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
 
     @Override
     public void handleSignUp() {
-        if (validateView()){
-            presenter.doSignUp(id_User.getText().toString(),id_mailSignUp.getText().toString().trim(),
-                   id_passwordSignUp.getText().toString() );
+        if (validateView()) {
+            presenter.doSignUp(id_User.getText().toString(), id_mailSignUp.getText().toString().trim(),
+                    id_passwordSignUp.getText().toString());
         }
     }
 
@@ -100,15 +100,15 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
         boolean retVal = true;
 
         if (TextUtils.isEmpty(id_User.getText())) {
-            id_User.setError("este campo es obligatorio");
+            id_User.setError("Este campo es obligatorio");
             retVal = false;
         } else if (id_User.getText().toString().length() < 5) {
-            id_User.setError("Debes ecribir al menos 5caracteres");
+            id_User.setError("Debes ecribir al menos 5 caracteres");
             retVal = false;
         }
 
         if (TextUtils.isEmpty(id_mailSignUp.getText().toString())) {
-            id_mailSignUp.setError("este campo es obligatorio");
+            id_mailSignUp.setError("Este campo es obligatorio");
             retVal = false;
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(id_mailSignUp.getText().toString().trim()).matches()) {
@@ -116,8 +116,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
             retVal = false;
         }
 
-        if (TextUtils.isEmpty(id_passwordSignUp.getText().toString())) {
-            id_passwordSignUp.setError("este campo es obligatorio");
+        if (TextUtils.isEmpty(id_passwordSignUp.getText())) {
+            id_passwordSignUp.setError("Este campo es obligatorio");
             retVal = false;
         } else if (id_passwordSignUp.getText().toString().length() < 4) {
             id_passwordSignUp.setError("Debe ser al menos 4 caracteres");
@@ -127,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
         if (TextUtils.isEmpty(id_ConfirmPassword.getText().toString())) {
             id_ConfirmPassword.setError("este campo es obligatorio");
             retVal = false;
-        } else if (contraseña!=confirmarContraseña) {
+        } else if (id_passwordSignUp.getText().equals(id_ConfirmPassword.getText()) ) {
             id_ConfirmPassword.setError("Las contraseñas no coinciden");
             retVal = false;
 
@@ -138,7 +138,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpInterface
 
     @Override
     public void onError(String error) {
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
 
     }
 

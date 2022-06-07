@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Bingo2/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Bingo2/app/src/main/res/layout/activity_sala.xml" value="0.259963768115942" />
+        <entry key="..\:/Bingo2/app/src/main/res/layout/activity_sign_up.xml" value="0.3546875" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Bingo2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2595" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Bingo2/app/src/main/res/layout/activity_lobby.xml" value="0.264" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Bingo2/app/src/main/res/layout/activity_main.xml" value="0.264" />
