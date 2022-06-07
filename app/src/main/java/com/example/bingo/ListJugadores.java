@@ -1,9 +1,8 @@
 package com.example.bingo;
 
-import org.json.JSONObject;
+import com.example.bingo.Data.Jugador;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListJugadores {
     Jugador jug;

@@ -1,7 +1,7 @@
 package com.example.bingo.DashBoardInterfaces;
 
-import com.example.bingo.Jugador;
-import com.example.bingo.Game;
+import com.example.bingo.Data.Jugador;
+import com.example.bingo.Data.Game;
 
 public class DashBoardPresenter implements DashBoard.Presenter,DashBoard.TaskListener{
     private DashBoard.VIew view;

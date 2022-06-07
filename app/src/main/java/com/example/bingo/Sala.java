@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.bingo.Data.Game;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,15 +32,24 @@ public class Sala extends AppCompatActivity  {
     FirebaseDatabase database;
     DatabaseReference messageRef;
 
+    Game game = new Game();
+    TextView TextTestMatrix;
+    TextView salaName;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        TextTestMatrix = findViewById(R.id.TextTestMatrix);
+        salaName = findViewById(R.id.textSala);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala);
 
         btn_BINGO=findViewById(R.id.btn_BINGO);
         btn_LINEA=findViewById(R.id.btn_LINEA);
 
-        btn_BINGO.setEnabled(false);
+       // btn_BINGO.setEnabled(false);
         database=FirebaseDatabase.getInstance("https://bingo-proyecto-default-rtdb.europe-west1.firebasedatabase.app/");
 
         SharedPreferences preferences=getSharedPreferences("PREFS",0);
@@ -57,10 +69,18 @@ public class Sala extends AppCompatActivity  {
             btn_BINGO.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int matriu[][] = new int[1][1];
+                    matriu[0][0] = 1;
+
+                    //TextTestMatrix.setText("hola");
+                    Log.i("matrix", game.toString());
+/*
                     //send message
                     btn_BINGO.setEnabled(true);
                     message=role+":Poked!";
                     messageRef.setValue(message);
+
+ */
                 }
             });
 

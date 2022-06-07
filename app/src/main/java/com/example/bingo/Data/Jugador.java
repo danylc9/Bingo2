@@ -1,4 +1,4 @@
-package com.example.bingo;
+package com.example.bingo.Data;
 
 public class Jugador {
     private String name;

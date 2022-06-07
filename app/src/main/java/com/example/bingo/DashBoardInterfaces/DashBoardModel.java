@@ -2,7 +2,7 @@ package com.example.bingo.DashBoardInterfaces;
 
 import androidx.annotation.NonNull;
 
-import com.example.bingo.Jugador;
+import com.example.bingo.Data.Jugador;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;

@@ -1,5 +1,6 @@
-package com.example.bingo;
+package com.example.bingo.Data;
 
+import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 
 import java.lang.reflect.Array;
@@ -19,6 +20,14 @@ public class Game {
      int columnas=5;
      int  matrix[][]  =new int[columnas][filas];
 
+     public Game(){
+         numCardboard = 1;
+         matrix = SizesMatrix();
+     }
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
 
     public int[][] SizesMatrix()
     {
@@ -38,6 +47,7 @@ public class Game {
                     aleatorio=randomNum;
                     generado=true;
                 }
+
 
             }
 
@@ -148,6 +158,32 @@ public class Game {
 
 
             return listaMatrices;
+    }
+
+    @Override
+    public String toString() {
+/*
+        String str = " ";
+
+        for (int i = 0; i < filas; i++)
+            for (int j = 0; j < columnas; j++)
+            {
+                str = (matrix[i][j]+"\t"+matrix[i][j+1]);
+                if (i==filas &&j==columnas) str = (matrix[i][j]+"\n");
+
+            }
+        return "str";
+
+ */
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < matrix.length; i++) {
+            sb.append("[ ");
+            for (int j = 0; j < matrix[0].length; j++) {
+                sb.append(matrix[i][j] + " ");
+                sb.append("]\n");}}
+
+                return sb.toString();
+
     }
 
 }
