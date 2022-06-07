@@ -13,7 +13,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 //si españa fuera un donut...
 //madrid no existiria
-//
+//albacete tendria mar
+
 public class Game {
     int numCardboard;
     Random random;
