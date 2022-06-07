@@ -11,6 +11,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
+//si españa fuera un donut...
+
 public class Game {
     int numCardboard;
     Random random;
