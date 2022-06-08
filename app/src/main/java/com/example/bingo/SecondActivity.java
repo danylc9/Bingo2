@@ -107,7 +107,7 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         nombre=findViewById(R.id.id_EnterName);
         numCartones=findViewById(R.id.id_cardBoard);
 
-//
+
         btn_READY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

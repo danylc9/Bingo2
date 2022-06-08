@@ -15,7 +15,7 @@ public class LoginModel implements LoginInterface.Model{
         this.listener = listener;
         auth=FirebaseAuth.getInstance();
     }
-    //
+
 
     @Override
     public void doLogin(String email, String password) {
