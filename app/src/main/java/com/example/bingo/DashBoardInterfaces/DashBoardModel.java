@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DashBoardModel implements DashBoard.Model{
-  private Jugador jugador;
+  static public Jugador jugador;
   private DashBoard.TaskListener listener;
   private FirebaseDatabase database;
   private DatabaseReference playerRef;
@@ -23,7 +23,7 @@ public class DashBoardModel implements DashBoard.Model{
     public DashBoardModel(DashBoard.TaskListener listener) {
         this.listener = listener;
         database=FirebaseDatabase.getInstance();
-        jugador=new Jugador();
+        jugador= new Jugador();
         playerRef=database.getReference("players");
         cardboardRef=database.getReference("`players").child("carboard");
 
