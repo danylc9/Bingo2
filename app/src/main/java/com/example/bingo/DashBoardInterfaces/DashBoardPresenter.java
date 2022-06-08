@@ -23,8 +23,6 @@ public class DashBoardPresenter implements DashBoard.Presenter,DashBoard.TaskLis
                 model.setCardBoard(jugador.getNumCartones());
                 model.setName(jugador.getName());
             }
-
-
     }
 
     @Override

@@ -29,14 +29,19 @@ public class DashBoardModel implements DashBoard.Model{
 
     }
 
-    @Override
+
+
+  @Override
     public void chargeCardBoard() {
-      cardboardRef.addListenerForSingleValueEvent(new ValueEventListener() {
+      /* cardboardRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.exists()){
-              int number=(int)snapshot.child("cardboard").getValue();
-              listener.onSuccesChargeCardBoard(number);
+          DataSnapshot snapsho=snapshot.child("cardboard");
+
+          if (snapsho.exists()){
+              String number= (String) snapshot.child("cardboard").getValue();
+              int carton=Integer.parseInt(number);
+              listener.onSuccesChargeCardBoard(carton);
             }else {
               listener.onError("no hay numero asignado");
             }
@@ -47,6 +52,8 @@ public class DashBoardModel implements DashBoard.Model{
             listener.onError(error.getMessage());
         }
       });
+
+       */
     }
 
 

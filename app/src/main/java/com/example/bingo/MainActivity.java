@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
 
     }
     private void goToLogin(){
-        Intent intentOnLogin = new Intent (this, Lobby.class);
+        Intent intentOnLogin = new Intent (this, SecondActivity.class);
         startActivity(intentOnLogin);
     }
 
@@ -105,10 +105,12 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
             Toast.makeText(this,"No es un password valido",Toast.LENGTH_SHORT).show();
 
         }
-        else{
-            presenter.toLogin(email.getText().toString().trim(),password.getText().toString().trim());
 
+         if(isValidEmail()&&isValidPassword()){
+             goToLogin();
         }
+
+
     }
 
     @Override
