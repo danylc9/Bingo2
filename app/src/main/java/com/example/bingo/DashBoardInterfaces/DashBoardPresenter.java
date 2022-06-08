@@ -24,7 +24,7 @@ public class DashBoardPresenter implements DashBoard.Presenter,DashBoard.TaskLis
                 model.setName(jugador.getName());
             }
     }
-
+//
     @Override
     public void onCharge() {
         if(view!=null){

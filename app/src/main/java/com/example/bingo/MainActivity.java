@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
             Toast.makeText(this,"No es un password valido",Toast.LENGTH_SHORT).show();
 
         }
-
+//
          if(isValidEmail()&&isValidPassword()){
              goToLogin();
         }
