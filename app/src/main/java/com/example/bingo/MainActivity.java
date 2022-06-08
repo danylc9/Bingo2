@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements LoginInterface.Vi
         btn_log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToLogin();
-                //handleLogin();
+                //goToLogin();
+                handleLogin();
             }
         });
     }

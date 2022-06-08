@@ -33,18 +33,28 @@ public class Sala extends AppCompatActivity  {
     DatabaseReference messageRef;
 
     Game game = new Game();
-    TextView TextTestMatrix;
+    Game game2 = new Game();
+    Game game3 = new Game();
+
+    TextView carton1;
     TextView salaName;
+    TextView carton2;
+    TextView carton3;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        TextTestMatrix = findViewById(R.id.TextTestMatrix);
-        salaName = findViewById(R.id.textSala);
+
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_sala);
+
+        carton1 = findViewById(R.id.TextTestMatrix);
+        salaName = findViewById(R.id.textSala);
+        carton2 = findViewById(R.id.carton2);
+        carton3 = findViewById(R.id.carton3);
 
         btn_BINGO=findViewById(R.id.btn_BINGO);
         btn_LINEA=findViewById(R.id.btn_LINEA);
@@ -69,11 +79,10 @@ public class Sala extends AppCompatActivity  {
             btn_BINGO.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int matriu[][] = new int[1][1];
-                    matriu[0][0] = 1;
 
-                    //TextTestMatrix.setText("hola");
-                    Log.i("matrix", game.toString());
+                    carton1.setText(game.toString());
+                    carton2.setText(game2.toString());
+                    carton3.setText(game3.toString());
 /*
                     //send message
                     btn_BINGO.setEnabled(true);
