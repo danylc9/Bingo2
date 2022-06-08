@@ -3,7 +3,7 @@ package com.example.bingo.Data;
 public class Jugador {
     private String name;
     private int NumCartones;
-//
+
     public Jugador(){}
 
     public Jugador(String nombre,int num){
