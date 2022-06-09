@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,6 +61,42 @@
                 android:textColor="#4CAF50"
                 android:textSize="16sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number: "
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/but_SacarNumero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Sacar numero" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button
@@ -90,9 +127,11 @@
         android:layout_width="409dp"
         android:layout_height="510dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="190dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:foregroundGravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/btn_BINGO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -126,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingStart="10dp"
-                    android:text="5"
+                    android:text="0"
                     android:textColor="#009688"
                     android:textSize="16sp"
                     android:textStyle="bold" />

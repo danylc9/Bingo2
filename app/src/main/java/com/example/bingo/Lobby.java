@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lobby extends AppCompatActivity   {
+    ViewModelGeneral viewModel = new ViewModelGeneral();
 
 
     ListView listView;
@@ -48,7 +49,6 @@ public class Lobby extends AppCompatActivity   {
         //get the player name and asign his room to the player name
         SharedPreferences preferences=getSharedPreferences("PREFS",0);
         playerName=preferences.getString("playerName","");
-        roomName=playerName;
 
         listView=findViewById(R.id.ListView);
         btn_room=findViewById(R.id.Create_room);
@@ -62,10 +62,10 @@ public class Lobby extends AppCompatActivity   {
                 //create room and add yourself as player1
                 btn_room.setText("CREATING ROOM");
                 btn_room.setEnabled(false);
-                roomName=playerName;
-                roomRef=database.getReference("rooms/"+roomName+"player1:");
+                roomName= "Sala: " + viewModel.getNameJugador();
+                roomRef=database.getReference("rooms/"+roomName);
                 addRoomEventListener();
-                roomRef.setValue(playerName);
+                roomRef.setValue(roomName);
             }
         });
 
@@ -74,7 +74,7 @@ public class Lobby extends AppCompatActivity   {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //join an existing room and add yourselft as player2
                 roomName=roomsList.get(i);
-                roomRef=database.getReference("rooms/"+roomName+"player2:");
+                roomRef=database.getReference("rooms/"+roomName+" + " + viewModel.getNameJugador());
                 addRoomEventListener();
                 roomRef.setValue(playerName);
             }

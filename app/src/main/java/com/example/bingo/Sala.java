@@ -1,9 +1,12 @@
 package com.example.bingo;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class Sala extends AppCompatActivity {
+    ViewModelGeneral viewModel = new ViewModelGeneral();
 
     Button btn_BINGO;
     Button btn_LINEA;
@@ -32,6 +36,10 @@ public class Sala extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference messageRef;
+    DatabaseReference messageRefBingo;
+    DatabaseReference messageRefLinea;
+
+
 
     Game game = new Game();
     Game game2 = new Game();
@@ -45,6 +53,7 @@ public class Sala extends AppCompatActivity {
     Game game10 = new Game();
 
     TextView numeroCartones;
+    TextView textStatus;
 
     TextView carton1;
     TextView salaName;
@@ -73,6 +82,8 @@ public class Sala extends AppCompatActivity {
         carton1 = findViewById(R.id.TextTestMatrix);
         salaName = findViewById(R.id.textSala);
         numeroCartones = findViewById(R.id.numCartones);
+        textStatus = findViewById(R.id.textStatus);
+
 
 //numero cartones
         //numeroCartones.setText(modelo.jugador.getNumCartones());
@@ -101,7 +112,6 @@ public class Sala extends AppCompatActivity {
         carton10.setText(game10.toString());
 
 
-
         btn_BINGO = findViewById(R.id.btn_BINGO);
         btn_LINEA = findViewById(R.id.btn_LINEA);
 
@@ -114,6 +124,8 @@ public class Sala extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             roomName = extras.getString("roomName");
+            //sala name
+            salaName.setText(roomName);
             if (roomName.equals(playerName))
                 role = "host";
             else {
@@ -124,45 +136,80 @@ public class Sala extends AppCompatActivity {
             btn_BINGO.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    salaName.setText(modelo.jugador.getName());
+
+                    salaName.setText(roomName);
+                    numeroCartones.setText(String.valueOf(viewModel.getNumCartones()));
 
                     //send message
-                    btn_BINGO.setEnabled(true);
-                    message=role+":Poked!";
-                    messageRef.setValue(message);
+                    message =  "BINGO!";
+                    messageRefBingo.setValue(message);
 
 
                 }
             });
 
+            btn_LINEA.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    //send message
+                    message =  "LINEA!";
+                    messageRefLinea.setValue(message);
+
+
+                }
+            });
             //listen for incoming message
-            messageRef = database.getReference("rooms/" + roomName + "/message");
-            message = role + " :Poked!";
+            messageRef = database.getReference("rooms/" + roomName + "/players" + "/" + viewModel.getNameJugador());
+            message = "online";
             messageRef.setValue(message);
+
+            messageRefBingo = database.getReference("rooms/" + roomName + "/bingo");
+            messageRefLinea = database.getReference("rooms/" + roomName + "/linea");
+
+            if(viewModel.isPrimeraVez()){
+                messageRefBingo.setValue("");
+                messageRefLinea.setValue("");
+                viewModel.setPrimeraVezFalse();
+
+            }
             addRoomEventListener();
+
         }
     }
 
     private void addRoomEventListener() {
-        messageRef.addValueEventListener(new ValueEventListener() {
+        messageRefBingo.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //mesagge recieved
-                if (role.equals("host")) {
-                    if (snapshot.getValue(String.class).contains("guest:")) {
-                        btn_BINGO.setEnabled(true);
-                        Toast.makeText(Sala.this,
-                                "" + snapshot.getValue(String.class).replace("guest:", ""),
-                                Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    if (snapshot.getValue(String.class).contains("host:")) {
-                        btn_BINGO.setEnabled(true);
-                        Toast.makeText(Sala.this,
-                                "" + snapshot.getValue(String.class).replace("host:", ""),
-                                Toast.LENGTH_SHORT).show();
-                    }
+
+                if (snapshot.getValue(String.class).equals("BINGO!")) {
+                    textStatus.setText("Game finished");
+                    textStatus.setTextColor(Color.RED);
+                    btn_BINGO.setEnabled(false);
+                    btn_LINEA.setEnabled(false);
                 }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                //error-retry
+                messageRef.setValue(message);
+            }
+        });
+        messageRefLinea.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.getValue(String.class).equals("LINEA!")) {
+                    textStatus.setText("Ha salido linea");
+                    textStatus.setTextColor(Color.BLUE);
+                    btn_LINEA.setEnabled(false);
+                }
+
+
             }
 
             @Override

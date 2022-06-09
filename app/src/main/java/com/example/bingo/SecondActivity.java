@@ -17,26 +17,26 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class SecondActivity extends AppCompatActivity implements DashBoard.VIew {
-    private boolean nombreEscrito=false;
-    private boolean numeroEscrito=false;
-    private String name;
-    private String carton;
-    private int cardBoard;
+    ViewModelGeneral viewModel = new ViewModelGeneral();
+
+    private boolean nombreEscrito = false;
+    private boolean numeroEscrito = false;
+
+    private int numCarts;
 
     private EditText nombre;
     private EditText numCartones;
     private Button btn_READY;
 
     private Jugador jugador;
-    private   ListJugadores lista;
+    private ListJugadores lista;
 
-    private  String playerName="";
+    private String playerName = "";
 
     private FirebaseDatabase database;
     private DatabaseReference playerRef;
     private DatabaseReference cardboardRef;
     private DashBoard.Presenter presenter;
-
 
 
 // -------------------------------------------------------------------------------
@@ -47,38 +47,36 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         setView();
-        presenter=new DashBoardPresenter(this);
+        presenter = new DashBoardPresenter(this);
 
 
 //-------------------------------------------------------------------------------
 
-    database=FirebaseDatabase.getInstance("https://bingo-proyecto-default-rtdb.europe-west1.firebasedatabase.app/");
+        database = FirebaseDatabase.getInstance("https://bingo-proyecto-default-rtdb.europe-west1.firebasedatabase.app/");
 
-    // check if player exists and get reference
-      //  SharedPreferences preferences=getSharedPreferences("PREFS",0);
+        // check if player exists and get reference
+        //  SharedPreferences preferences=getSharedPreferences("PREFS",0);
         //playerName=preferences.getString("playerName","");
         //if(playerName.equals(""))
         //{
-          //  playerRef=database.getReference("players/"+playerName);
-            //cardboardRef=database.getReference("cardboard"+cardBoard);
-            //addEventListener();
-              //      playerRef.setValue("");
+        //  playerRef=database.getReference("players/"+playerName);
+        //cardboardRef=database.getReference("cardboard"+cardBoard);
+        //addEventListener();
+        //      playerRef.setValue("");
         //}
-
-
 
 
 // -------------------------------------------------------------------------------
 
 
-      nombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        nombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     nombre.setText("");
-                    nombreEscrito =true;
+                    nombreEscrito = true;
 
-                    if(nombreEscrito &numeroEscrito)
+                    if (nombreEscrito & numeroEscrito)
                         btn_READY.setEnabled(true);
                 }
             }
@@ -88,24 +86,23 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         numCartones.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     numCartones.setText("");
-                    numeroEscrito=true;
+                    numeroEscrito = true;
 
-                    if(nombreEscrito &numeroEscrito)
+                    if (nombreEscrito & numeroEscrito)
                         btn_READY.setEnabled(true);
                 }
             }
         });
 
 
-
     }
 
-    private void setView(){
-        btn_READY=findViewById(R.id.btn_Log_In);
-        nombre=findViewById(R.id.id_EnterName);
-        numCartones=findViewById(R.id.id_cardBoard);
+    private void setView() {
+        btn_READY = findViewById(R.id.btn_Log_In);
+        nombre = findViewById(R.id.id_EnterName);
+        numCartones = findViewById(R.id.id_cardBoard);
 
 
         btn_READY.setOnClickListener(new View.OnClickListener() {
@@ -113,34 +110,35 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
             public void onClick(View view) {
 
                 //recojo nombre y numcartones + Parseo de cartones
-                playerName=nombre.getText().toString();
-                carton=numCartones.getText().toString();
-                cardBoard = Integer.parseInt(carton);//guardo el numero de cartones
+                playerName = nombre.getText().toString();
+                numCarts = Integer.parseInt(numCartones.getText().toString());//guardo el numero de cartones
                 presenter.onCharge();
 
-                presenter.onSave(playerName,cardBoard);
+                presenter.onSave(playerName, numCarts);
 
-                startActivity(new Intent(getApplicationContext(),Lobby.class));
+                //guardar jugador en el view model
+                Jugador juga = new Jugador(playerName,numCarts);
+                viewModel.setJugador(juga);
 
-  //-----------------------------------------------------------
+               startActivity(new Intent(getApplicationContext(), Lobby.class));
+
+                //-----------------------------------------------------------
                 //loggin the player in
 
 
-
-
 /**
-                nombre.setText("");
-                if(!playerName.equals(""))
-                {
-                    btn_READY.setText("LOGGING IN");
-                    btn_READY.setEnabled(false);
-                    playerRef=database.getReference("players/"+playerName);
-                    cardboardRef=database.getReference("cardboard/"+cardBoard);
-                    addEventListener();
-                    playerRef.setValue("");
-                    cardboardRef.setValue("");
-                }
-                */
+ nombre.setText("");
+ if(!playerName.equals(""))
+ {
+ btn_READY.setText("LOGGING IN");
+ btn_READY.setEnabled(false);
+ playerRef=database.getReference("players/"+playerName);
+ cardboardRef=database.getReference("cardboard/"+cardBoard);
+ addEventListener();
+ playerRef.setValue("");
+ cardboardRef.setValue("");
+ }
+ */
             }
         });
     }
@@ -202,8 +200,6 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
     }*/
 
 
-
-
     @Override
     public void setInput(boolean enable) {
         btn_READY.setEnabled(enable);
@@ -233,7 +229,7 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
 
     @Override
     public void onError(String error) {
-        Toast.makeText(this,error,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 
     @Override
