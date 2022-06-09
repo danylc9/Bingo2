@@ -49,16 +49,6 @@ public class Sala extends AppCompatActivity {
     DatabaseReference messageRefNumero;
 
 
-    Game game = new Game();
-    Game game2 = new Game();
-    Game game3 = new Game();
-    Game game4 = new Game();
-    Game game5 = new Game();
-    Game game6 = new Game();
-    Game game7 = new Game();
-    Game game8 = new Game();
-    Game game9 = new Game();
-    Game game10 = new Game();
 
     TextView numeroCartones;
     TextView textStatus;
@@ -110,16 +100,16 @@ public class Sala extends AppCompatActivity {
         carton10 = findViewById(R.id.carton10);
 
         //inicializar cartones
-        carton1.setText(game.toString());
-        carton2.setText(game2.toString());
-        carton3.setText(game3.toString());
-        carton4.setText(game4.toString());
-        carton5.setText(game5.toString());
-        carton6.setText(game6.toString());
-        carton7.setText(game7.toString());
-        carton8.setText(game8.toString());
-        carton9.setText(game9.toString());
-        carton10.setText(game10.toString());
+        carton1.setText(viewModel.game.toString());
+        carton2.setText(viewModel.game2.toString());
+        carton3.setText(viewModel.game3.toString());
+        carton4.setText(viewModel.game4.toString());
+        carton5.setText(viewModel.game5.toString());
+        carton6.setText(viewModel.game6.toString());
+        carton7.setText(viewModel.game7.toString());
+        carton8.setText(viewModel.game8.toString());
+        carton9.setText(viewModel.game9.toString());
+        carton10.setText(viewModel.game10.toString());
 
 
         btn_BINGO = findViewById(R.id.btn_BINGO);

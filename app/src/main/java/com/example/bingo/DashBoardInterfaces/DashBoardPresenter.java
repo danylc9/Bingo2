@@ -42,7 +42,7 @@ public class DashBoardPresenter implements DashBoard.Presenter,DashBoard.TaskLis
 //AQUI SE SACA LA GENERACION DE MATRICES
     @Override
     public void generate(int cardBoard) {
-        game.generarMatrices(cardBoard);
+       // game.generarMatrices(cardBoard);
     }
 
 

@@ -3,6 +3,8 @@ package com.example.bingo.Data;
 import androidx.annotation.NonNull;
 import androidx.collection.ArraySet;
 
+import com.example.bingo.ViewModelGeneral;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Game {
+    ViewModelGeneral viewModel = new ViewModelGeneral();
 
     private int filas = 5;
     private int columnas = 5;
@@ -30,12 +33,18 @@ public class Game {
     @NonNull
     @Override
     public String toString() {
+        viewModel.generadosAdd(0);
 
         String str = " ";
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                str += (matrix[i][j] + "   ");
+                if (viewModel.generadosContiene(matrix[i][j])) {
+                    str += "A" + "     ";
+                } else {
+                    str += (matrix[i][j] + "     ");
+
+                }
             }
             str += "\n";
         }
@@ -83,14 +92,12 @@ public class Game {
         for (int i = 10; i < 15; i++) {
             int min_val = 51;
             int max_val = 75;
-            int aleatorio = -1;
             boolean generado = false;
             while (!generado) {
                 ThreadLocalRandom tlr = ThreadLocalRandom.current();
                 int randomNum = tlr.nextInt(min_val, max_val + 1);
                 if (!generados.contains(randomNum)) {
                     generados.add(randomNum);
-                    aleatorio = randomNum;
                     generado = true;
                 }
 
@@ -100,14 +107,12 @@ public class Game {
         for (int i = 15; i < 20; i++) {
             int min_val = 76;
             int max_val = 85;
-            int aleatorio = -1;
             boolean generado = false;
             while (!generado) {
                 ThreadLocalRandom tlr = ThreadLocalRandom.current();
                 int randomNum = tlr.nextInt(min_val, max_val + 1);
                 if (!generados.contains(randomNum)) {
                     generados.add(randomNum);
-                    aleatorio = randomNum;
                     generado = true;
                 }
 
@@ -117,14 +122,12 @@ public class Game {
         for (int i = 20; i < 25; i++) {
             int min_val = 86;
             int max_val = 99;
-            int aleatorio = -1;
             boolean generado = false;
             while (!generado) {
                 ThreadLocalRandom tlr = ThreadLocalRandom.current();
                 int randomNum = tlr.nextInt(min_val, max_val + 1);
                 if (!generados.contains(randomNum)) {
                     generados.add(randomNum);
-                    aleatorio = randomNum;
                     generado = true;
                 }
 
@@ -148,9 +151,6 @@ public class Game {
 
         return matrix;
     }
-
-
-
 
 
 }
