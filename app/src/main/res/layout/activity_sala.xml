@@ -185,7 +185,6 @@
                 android:id="@+id/TextTestMatrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextTestMatrix"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -193,7 +192,6 @@
                 android:id="@+id/carton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -201,7 +199,6 @@
                 android:id="@+id/carton3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -209,7 +206,6 @@
                 android:id="@+id/carton4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -217,7 +213,6 @@
                 android:id="@+id/carton5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -225,7 +220,6 @@
                 android:id="@+id/carton6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -233,7 +227,6 @@
                 android:id="@+id/carton7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -241,7 +234,6 @@
                 android:id="@+id/carton8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -249,7 +241,6 @@
                 android:id="@+id/carton9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -257,7 +248,6 @@
                 android:id="@+id/carton10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

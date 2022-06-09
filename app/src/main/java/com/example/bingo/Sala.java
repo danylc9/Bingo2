@@ -49,7 +49,6 @@ public class Sala extends AppCompatActivity {
     DatabaseReference messageRefNumero;
 
 
-
     TextView numeroCartones;
     TextView textStatus;
     TextView textNumber;
@@ -100,16 +99,43 @@ public class Sala extends AppCompatActivity {
         carton10 = findViewById(R.id.carton10);
 
         //inicializar cartones
-        carton1.setText(viewModel.game.toString());
-        carton2.setText(viewModel.game2.toString());
-        carton3.setText(viewModel.game3.toString());
-        carton4.setText(viewModel.game4.toString());
-        carton5.setText(viewModel.game5.toString());
-        carton6.setText(viewModel.game6.toString());
-        carton7.setText(viewModel.game7.toString());
-        carton8.setText(viewModel.game8.toString());
-        carton9.setText(viewModel.game9.toString());
-        carton10.setText(viewModel.game10.toString());
+        if (viewModel.getNumCartones() >= 1) {
+            carton1.setText(viewModel.game.toString());
+        }
+
+        if (viewModel.getNumCartones() >= 2) {
+            carton2.setText(viewModel.game2.toString());
+        }
+
+        if (viewModel.getNumCartones() >= 3) {
+            carton3.setText(viewModel.game3.toString());
+        }
+
+
+        if (viewModel.getNumCartones() >= 4) {
+            carton4.setText(viewModel.game4.toString());
+        }
+
+        if (viewModel.getNumCartones() >= 5) {
+            carton5.setText(viewModel.game5.toString());
+        }
+
+        if (viewModel.getNumCartones() >= 6) {
+            carton6.setText(viewModel.game6.toString());
+        }
+
+        if (viewModel.getNumCartones() >= 7) {
+            carton7.setText(viewModel.game7.toString());
+        }
+        if (viewModel.getNumCartones() >= 8) {
+            carton8.setText(viewModel.game8.toString());
+        }
+        if (viewModel.getNumCartones() >= 9) {
+            carton9.setText(viewModel.game9.toString());
+        }
+        if (viewModel.getNumCartones() >= 10) {
+            carton10.setText(viewModel.game10.toString());
+        }
 
 
         btn_BINGO = findViewById(R.id.btn_BINGO);
@@ -168,7 +194,6 @@ public class Sala extends AppCompatActivity {
                     message = "BINGO!";
                     messageRefBingo.setValue(message);
                     messageRefLinea.setValue(message);
-
 
 
                 }
