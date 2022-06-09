@@ -15,13 +15,11 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
-    private int numCardboard;
     private int filas = 5;
     private int columnas = 5;
     private int matrix[][] = new int[columnas][filas];
 
     public Game() {
-        numCardboard = 1;
         matrix = SizesMatrix();
     }
 
@@ -51,17 +49,14 @@ public class Game {
         for (int i = 0; i < 5; i++) {
             int min_val = 0;
             int max_val = 25;
-            int aleatorio = -1;
             boolean generado = false;
             while (!generado) {
                 ThreadLocalRandom tlr = ThreadLocalRandom.current();
                 int randomNum = tlr.nextInt(min_val, max_val + 1);
                 if (!generados.contains(randomNum)) {
                     generados.add(randomNum);
-                    aleatorio = randomNum;
                     generado = true;
                 }
-
 
             }
 
@@ -155,18 +150,6 @@ public class Game {
     }
 
 
-    public ArrayList<int[][]> generarMatrices(int n) {
-        ArrayList<int[][]> listaMatrices = new ArrayList<>();
-        int i = 0;
-
-        while (i < n) {
-            listaMatrices.set(i, SizesMatrix());
-            i++;
-        }
-
-
-        return listaMatrices;
-    }
 
 
 
