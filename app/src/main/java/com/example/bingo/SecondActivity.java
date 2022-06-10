@@ -9,14 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.bingo.DashBoardInterfaces.DashBoard;
-import com.example.bingo.DashBoardInterfaces.DashBoardPresenter;
 import com.example.bingo.Data.Jugador;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class SecondActivity extends AppCompatActivity implements DashBoard.VIew {
+public class SecondActivity extends AppCompatActivity {
     ViewModelGeneral viewModel = new ViewModelGeneral();
 
     private boolean nombreEscrito = false;
@@ -36,7 +34,6 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
     private FirebaseDatabase database;
     private DatabaseReference playerRef;
     private DatabaseReference cardboardRef;
-    private DashBoard.Presenter presenter;
 
 
 // -------------------------------------------------------------------------------
@@ -47,27 +44,10 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         setView();
-        presenter = new DashBoardPresenter(this);
 
 
-//-------------------------------------------------------------------------------
 
         database = FirebaseDatabase.getInstance("https://bingo-proyecto-default-rtdb.europe-west1.firebasedatabase.app/");
-
-        // check if player exists and get reference
-        //  SharedPreferences preferences=getSharedPreferences("PREFS",0);
-        //playerName=preferences.getString("playerName","");
-        //if(playerName.equals(""))
-        //{
-        //  playerRef=database.getReference("players/"+playerName);
-        //cardboardRef=database.getReference("cardboard"+cardBoard);
-        //addEventListener();
-        //      playerRef.setValue("");
-        //}
-
-
-// -------------------------------------------------------------------------------
-
 
         nombre.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -115,12 +95,10 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
                 //recojo nombre y numcartones + Parseo de cartones
                 playerName = nombre.getText().toString();
                 numCarts = Integer.parseInt(numCartones.getText().toString());//guardo el numero de cartones
-                presenter.onCharge();
 
                 if (numCarts>0&&numCarts<11) {
 
 
-                presenter.onSave(playerName, numCarts);
 
                 //guardar jugador en el view model
                 Jugador juga = new Jugador(playerName,numCarts);
@@ -132,82 +110,11 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
                 else{
                     mensajeCartonesMax();
                 }
-                //-----------------------------------------------------------
-                //loggin the player in
 
 
-/**
- nombre.setText("");
- if(!playerName.equals(""))
- {
- btn_READY.setText("LOGGING IN");
- btn_READY.setEnabled(false);
- playerRef=database.getReference("players/"+playerName);
- cardboardRef=database.getReference("cardboard/"+cardBoard);
- addEventListener();
- playerRef.setValue("");
- cardboardRef.setValue("");
- }
- */
             }
         });
     }
-
-/* private void addEventListener(){
-        //read from database
-
-        playerRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //success- continue to the next screen after saving the player name
-                if(!playerName.equals(""))
-                {
-                    SharedPreferences preferences =getSharedPreferences("PREFS",0);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("playerName",playerName);
-                    editor.apply();
-
-                    finish();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //error
-                btn_READY.setText("LOG IN");
-                btn_READY.setEnabled(true);
-                Toast.makeText(SecondActivity.this,"Error!",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-        cardboardRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //success- continue to the next screen after saving the player name
-                if(cardBoard>0&&cardBoard<3)
-                {
-                    SharedPreferences preferences =getSharedPreferences("PREFS",0);
-                    SharedPreferences.Editor editor=preferences.edit();
-                    editor.putString("cardboard",cardBoard);
-                    editor.apply();
-
-
-                    startActivity(new Intent(getApplicationContext(),Lobby.class));
-                    finish();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //error
-                btn_READY.setText("LOG IN");
-                btn_READY.setEnabled(true);
-                Toast.makeText(SecondActivity.this,"Error!",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
 
 
     public void mensajeCartonesMax(){
@@ -215,41 +122,9 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
 
     }
 
-    @Override
-    public void setInput(boolean enable) {
-        btn_READY.setEnabled(enable);
-        numCartones.setEnabled(enable);
-        nombre.setEnabled(enable);
-    }
-
-    @Override
-    public void enableInput() {
-        setInput(true);
-    }
-
-    @Override
-    public void disableInput() {
-        setInput(false);
-    }
-
-    @Override
-    public void fillEditTextNombre(String name) {
-        nombre.setText(name);
-    }
-
-    @Override
-    public void fillEditTextCartones(int num) {
-        numCartones.setText(num);
-    }
-
-    @Override
-    public void onError(String error) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.onDestroy();
     }
 }

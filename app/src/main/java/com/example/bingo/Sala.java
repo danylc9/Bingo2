@@ -14,8 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.bingo.DashBoardInterfaces.DashBoardModel;
 import com.example.bingo.Data.Game;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,8 +63,6 @@ public class Sala extends AppCompatActivity {
     TextView carton9;
     TextView carton10;
 
-
-    DashBoardModel modelo;
 
 
     @Override
