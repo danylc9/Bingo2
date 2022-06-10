@@ -72,7 +72,7 @@ public class Game {
         }
 
 
-        for (int i = 5; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             int min_val = 26;
             int max_val = 50;
             int aleatorio = -1;
@@ -89,7 +89,7 @@ public class Game {
             }
         }
 
-        for (int i = 10; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             int min_val = 51;
             int max_val = 75;
             boolean generado = false;
@@ -104,7 +104,7 @@ public class Game {
             }
         }
 
-        for (int i = 15; i < 20; i++) {
+        for (int i = 0; i < 5; i++) {
             int min_val = 76;
             int max_val = 85;
             boolean generado = false;
@@ -119,7 +119,7 @@ public class Game {
             }
         }
 
-        for (int i = 20; i < 25; i++) {
+        for (int i = 0; i < 5; i++) {
             int min_val = 86;
             int max_val = 99;
             boolean generado = false;
@@ -135,15 +135,15 @@ public class Game {
         }
 
 
-        Integer[] matriz = new Integer[generados.size()];
-        generados.toArray(matriz);
-        Arrays.sort(matriz);
+        Integer[] filaGenerados = new Integer[generados.size()];
+        generados.toArray(filaGenerados);
+        Arrays.sort(filaGenerados);
 
         int x = 0;
 
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                matrix[i][j] = matriz[x];
+                matrix[i][j] = filaGenerados[x];
                 x++;
             }
         }

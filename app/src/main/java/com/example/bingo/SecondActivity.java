@@ -83,14 +83,17 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         });
 
 
+
         numCartones.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
-                    numCartones.setText("");
+
                     numeroEscrito = true;
 
-                    if (nombreEscrito & numeroEscrito)
+
+
+                     if (nombreEscrito & numeroEscrito)
                         btn_READY.setEnabled(true);
                 }
             }
@@ -114,6 +117,9 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
                 numCarts = Integer.parseInt(numCartones.getText().toString());//guardo el numero de cartones
                 presenter.onCharge();
 
+                if (numCarts>0&&numCarts<11) {
+
+
                 presenter.onSave(playerName, numCarts);
 
                 //guardar jugador en el view model
@@ -121,7 +127,11 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
                 viewModel.setJugador(juga);
 
                startActivity(new Intent(getApplicationContext(), Lobby.class));
+                }
 
+                else{
+                    mensajeCartonesMax();
+                }
                 //-----------------------------------------------------------
                 //loggin the player in
 
@@ -199,6 +209,11 @@ public class SecondActivity extends AppCompatActivity implements DashBoard.VIew 
         });
     }*/
 
+
+    public void mensajeCartonesMax(){
+        Toast.makeText(this,"Maximo 10",Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     public void setInput(boolean enable) {
