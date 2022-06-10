@@ -40,7 +40,7 @@ public class Game {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 if (viewModel.generadosContiene(matrix[i][j])) {
-                    str += "A" + "     ";
+                    str += "X" + "     ";
                 } else {
                     str += (matrix[i][j] + "     ");
 
